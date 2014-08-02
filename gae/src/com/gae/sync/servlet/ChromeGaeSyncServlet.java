@@ -1,4 +1,4 @@
-package com.gae.sync;
+package com.gae.sync.servlet;
 import java.io.IOException;
 import javax.servlet.http.*;
 
