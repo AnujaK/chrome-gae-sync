@@ -48,6 +48,22 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "storeendpoint.updateStore" : {
+      "path" : "store",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.gae.sync.entity.StoreEndpoint.updateStore",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "storeendpoint.listStore" : {
       "path" : "store",
       "httpMethod" : "GET",
@@ -68,22 +84,6 @@
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "storeendpoint.updateStore" : {
-      "path" : "store",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.gae.sync.entity.StoreEndpoint.updateStore",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -183,17 +183,17 @@
           "$ref" : "Store"
         }
       },
-      "com.gae.sync.entity.StoreEndpoint.listStore" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Store"
-        }
-      },
       "com.gae.sync.entity.StoreEndpoint.updateStore" : {
         "request" : {
           "$ref" : "Store"
         },
         "response" : {
           "$ref" : "Store"
+        }
+      },
+      "com.gae.sync.entity.StoreEndpoint.listStore" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Store"
         }
       },
       "com.gae.sync.entity.StoreEndpoint.insertStore" : {

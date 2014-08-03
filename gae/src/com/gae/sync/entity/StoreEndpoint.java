@@ -102,16 +102,19 @@ public class StoreEndpoint {
 
 		if (storeDTO == null) {
 			return null;
-		} else if (storeDTO.getId() <= 0) {
-			return null;
 		} else if (storeDTO.getData() == null) {
 			return null;
 		}
 		Store store = new Store();
 		store.setData(storeDTO.getData());
+		if (storeDTO.getId() > 0) {
+			store.setId(storeDTO.getId());
+		}
 		try {
-			if (containsStore(store)) {
-				throw new EntityExistsException("Object already exists");
+			if (store.getId() > 0) {
+				if (containsStore(store)) {
+					throw new EntityExistsException("Object already exists");
+				}
 			}
 			mgr.makePersistent(store);
 		} finally {
