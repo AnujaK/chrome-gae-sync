@@ -1,4 +1,4 @@
-package com.gae.sync.model;
+package com.gae.sync.dto;
 
 public class CloudSyncDTO {
 	private long id;

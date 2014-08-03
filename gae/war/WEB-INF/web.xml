@@ -15,7 +15,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.gae.sync.service.CloudSyncService</param-value>
+   <param-value>com.gae.sync.entity.StoreEndpoint,com.gae.sync.service.CloudSyncService</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>
