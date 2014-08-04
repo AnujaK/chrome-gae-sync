@@ -3,19 +3,18 @@ chrome-gae-sync
 
 ##### What?
 
-This project will provide a readymade backend for developers who build Chrome applications. Developers will be able to focus on building the Chrome app by using this project in their app. 
+A ready to use and tested backend for your Chrome applications is chrome-gae-sync. As the name implies, it will connect your application to Google App Engine. 
 
-You will be free from the effort of storing, updating, fetching and deleting data from you app. This project will empower the users to access your app from the same state from where it was exited.
-
-Just do some simple configurations and plug this project into yours. Using OAuth 2.0, your Chrome app will connect to Google App Engine and access its data.
 
 ##### Why?
 
-TODO
+We happen to spend so much time in coding and testing CRUD operations. Will it not be great if we get something to plug in and be able to access the Chrome app from where we had left it last time? 
+
+You can be more productive in building the functionality of the app by using this project in your app.
 
 ##### How?
 
-TODO
+Just do some simple configurations and plug this project into yours. Using OAuth 2.0, your Chrome app will connect to Google App Engine and access its data.
 
 Getting Started
 ==========
