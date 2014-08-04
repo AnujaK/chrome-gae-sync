@@ -23,8 +23,8 @@
     "type" : "no-cache",
     "maxAge" : 0
   },
-  "ownerDomain" : "gae.com",
-  "ownerName" : "gae.com",
+  "ownerDomain" : "bootsimply.com",
+  "ownerName" : "bootsimply.com",
   "packagePath" : "sync.entity",
   "methods" : {
     "storeendpoint.getStore" : {
