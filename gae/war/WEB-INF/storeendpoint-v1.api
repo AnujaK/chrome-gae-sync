@@ -23,8 +23,8 @@
     "type" : "no-cache",
     "maxAge" : 0
   },
-  "ownerDomain" : "bootsimply.com",
-  "ownerName" : "bootsimply.com",
+  "ownerDomain" : "gae.com",
+  "ownerName" : "gae.com",
   "packagePath" : "sync.entity",
   "methods" : {
     "storeendpoint.getStore" : {
@@ -43,22 +43,6 @@
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "storeendpoint.updateStore" : {
-      "path" : "store",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.gae.sync.entity.StoreEndpoint.updateStore",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -84,6 +68,22 @@
           }
         },
         "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "storeendpoint.updateStore" : {
+      "path" : "store",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.gae.sync.entity.StoreEndpoint.updateStore",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -137,12 +137,6 @@
             "type" : "string",
             "format" : "int64"
           },
-          "userId" : {
-            "type" : "string"
-          },
-          "userEmail" : {
-            "type" : "string"
-          },
           "data" : {
             "type" : "string"
           }
@@ -162,25 +156,17 @@
             "type" : "string"
           }
         }
-      },
-      "StoreDTO" : {
-        "id" : "StoreDTO",
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "format" : "int64"
-          },
-          "data" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
       "com.gae.sync.entity.StoreEndpoint.getStore" : {
         "response" : {
           "$ref" : "Store"
+        }
+      },
+      "com.gae.sync.entity.StoreEndpoint.listStore" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Store"
         }
       },
       "com.gae.sync.entity.StoreEndpoint.updateStore" : {
@@ -191,14 +177,9 @@
           "$ref" : "Store"
         }
       },
-      "com.gae.sync.entity.StoreEndpoint.listStore" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Store"
-        }
-      },
       "com.gae.sync.entity.StoreEndpoint.insertStore" : {
         "request" : {
-          "$ref" : "StoreDTO"
+          "$ref" : "Store"
         },
         "response" : {
           "$ref" : "Store"

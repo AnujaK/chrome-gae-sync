@@ -1,7 +1,7 @@
 package com.gae.sync.entity;
 
-import com.gae.sync.dto.StoreDTO;
 import com.gae.sync.entity.PMF;
+
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
@@ -19,7 +19,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.jdo.PersistenceManager;
 import javax.jdo.Query;
 
-@Api(name = "storeendpoint", namespace = @ApiNamespace(ownerDomain = "bootsimply.com", ownerName = "bootsimply.com", packagePath = "sync.entity"))
+@Api(name = "storeendpoint", namespace = @ApiNamespace(ownerDomain = "gae.com", ownerName = "gae.com", packagePath = "sync.entity"))
 public class StoreEndpoint {
 
 	/**
@@ -97,24 +97,12 @@ public class StoreEndpoint {
 	 * @return The inserted entity.
 	 */
 	@ApiMethod(name = "insertStore")
-	public Store insertStore(StoreDTO storeDTO) {
+	public Store insertStore(Store store) {
 		PersistenceManager mgr = getPersistenceManager();
-
-		if (storeDTO == null) {
-			return null;
-		} else if (storeDTO.getData() == null) {
-			return null;
-		}
-		Store store = new Store();
-		store.setData(storeDTO.getData());
-		if (storeDTO.getId() > 0) {
-			store.setId(storeDTO.getId());
-		}
 		try {
-			if (store.getId() > 0) {
-				if (containsStore(store)) {
-					throw new EntityExistsException("Object already exists");
-				}
+			
+			if (containsStore(store)) {
+				throw new EntityExistsException("Object already exists");
 			}
 			mgr.makePersistent(store);
 		} finally {

@@ -10,37 +10,18 @@ import javax.jdo.annotations.PrimaryKey;
 public class Store {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.IDENTITY)
-	private long id;
-	@Persistent
-	private String userId;
-	@Persistent
-	private String userEmail;
-	@Persistent
-	private String data;
-
-	public long getId() {
+	private Long id;
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
+	@Persistent
+	private String data;
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserEmail() {
-		return userEmail;
-	}
-
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
 
 	public String getData() {
 		return data;
