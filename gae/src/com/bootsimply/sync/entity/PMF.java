@@ -1,4 +1,4 @@
-package com.gae.sync.entity;
+package com.bootsimply.sync.entity;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManagerFactory;

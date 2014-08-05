@@ -1,4 +1,4 @@
-package com.gae.sync.servlet;
+package com.bootsimply.sync.servlet;
 import java.io.IOException;
 import javax.servlet.http.*;
 

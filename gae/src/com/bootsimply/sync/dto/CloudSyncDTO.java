@@ -1,4 +1,4 @@
-package com.gae.sync.dto;
+package com.bootsimply.sync.dto;
 
 public class CloudSyncDTO {
 	private long id;

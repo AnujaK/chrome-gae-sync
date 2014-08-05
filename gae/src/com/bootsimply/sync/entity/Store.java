@@ -1,4 +1,4 @@
-package com.gae.sync.entity;
+package com.bootsimply.sync.entity;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;

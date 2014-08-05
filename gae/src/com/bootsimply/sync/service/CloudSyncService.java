@@ -1,9 +1,9 @@
-package com.gae.sync.service;
+package com.bootsimply.sync.service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.gae.sync.dto.CloudSyncDTO;
+import com.bootsimply.sync.dto.CloudSyncDTO;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.Named;

@@ -1,4 +1,4 @@
-package com.gae.sync.entity;
+package com.bootsimply.sync.entity;
 
 public class Config {
     public static final String EMAIL_SCOPE = "https://www.googleapis.com/auth/userinfo.email";

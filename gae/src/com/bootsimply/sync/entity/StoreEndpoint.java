@@ -1,4 +1,4 @@
-package com.gae.sync.entity;
+package com.bootsimply.sync.entity;
 
 import java.util.HashMap;
 import java.util.List;

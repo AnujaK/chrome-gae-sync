@@ -25,6 +25,21 @@
     "maxAge" : 0
   },
   "methods" : {
+    "sync.list" : {
+      "path" : "cloudsyncdtocollection",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.bootsimply.sync.service.CloudSyncService.getCloudSyncData",
+      "request" : {
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "sync.add" : {
       "path" : "addCloudSyncData/{id}/{data}",
       "httpMethod" : "POST",
@@ -32,7 +47,7 @@
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.gae.sync.service.CloudSyncService.addCloudSyncData",
+      "rosyMethod" : "com.bootsimply.sync.service.CloudSyncService.addCloudSyncData",
       "request" : {
         "parameters" : {
           "id" : {
@@ -48,21 +63,6 @@
       },
       "response" : {
         "body" : "empty"
-      }
-    },
-    "sync.list" : {
-      "path" : "cloudsyncdtocollection",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.gae.sync.service.CloudSyncService.getCloudSyncData",
-      "request" : {
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -101,12 +101,12 @@
       }
     },
     "methods" : {
-      "com.gae.sync.service.CloudSyncService.addCloudSyncData" : {
-      },
-      "com.gae.sync.service.CloudSyncService.getCloudSyncData" : {
+      "com.bootsimply.sync.service.CloudSyncService.getCloudSyncData" : {
         "response" : {
           "$ref" : "CloudSyncDTOCollection"
         }
+      },
+      "com.bootsimply.sync.service.CloudSyncService.addCloudSyncData" : {
       }
     }
   }
