@@ -21,31 +21,36 @@ Getting Started
 
 ##### 1. Google App Engine
 
-Go to https://appengine.google.com and create a new application (Enter application identifier, title and create it). I will use “chrome-gae-sync” as my application identifier.
+
+Go to https://appengine.google.com and create a new application (Enter application identifier, title and create it). I will use “chrome-gae-sync” as my application identifier in this documentation.
 
 TODO : Add More details
 
 ##### 2. Google Developers Console
 
+
 Go to https://console.developers.google.com and click on the GAE application identifier you created above. 
 
-2.1. In the left navigation bar, under APIS & AUTH section, click on APIs and enable Google+API. Once done you will see Google+API at the top with status ON (ON button becomes green).
+2.1. In the left navigation bar, under "APIS & AUTH" section, click on APIs and enable Google+API. Once done you will see Google+API at the top with status ON (ON button is displayed in green).
 
 2.2. Generate Client ID for OAuth - TODO
 
 2.3. Consent Screen - Select Email address, enter product name and click Save. You can also enter optional fields like home page url, logo etc.
 
+
 ##### 3. Chrome Application
 
 3.1. Add/update the following in your manifest.json file:
 
+```
 "permissions": ["identity"],
-  "oauth2": {
+"oauth2": {
     "client_id": "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com",
     "scopes": ["https://www.googleapis.com/auth/plus.login"]
-  }
+}
+```
 
-Use the client ID you generated in section 2.2 above ( for chrome application).
+Use the client ID you generated in section 2.2 above (for chrome application).
 
 3.2. Publish your chrome application to web store (with the modified manifest file). This is mandatory to get the OAuth flow working (even locally).
 
