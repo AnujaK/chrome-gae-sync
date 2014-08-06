@@ -3,7 +3,7 @@ chrome-gae-sync
 
 ##### What?
 
-A ready to use and tested backend for your Chrome applications is chrome-gae-sync. As the name implies, it will connect your application to Google App Engine. 
+Supercharge your Chrome applications with a ready-to-use powerful Google App Engine backend. 
 
 
 ##### Why?
