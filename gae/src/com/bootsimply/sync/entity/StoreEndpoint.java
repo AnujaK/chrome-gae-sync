@@ -1,5 +1,6 @@
 package com.bootsimply.sync.entity;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,10 +26,15 @@ public class StoreEndpoint {
      * This method lists all the entities inserted in datastore. It uses HTTP GET method and paging support.
      * 
      * @return A CollectionResponse class containing the list of all entities persisted and a cursor to the next page.
+     * @throws UnauthorizedException
      */
     @SuppressWarnings({ "unchecked", "unused" })
-    @ApiMethod(name = "listStore")
-    public CollectionResponse<Store> listStore(@Nullable @Named("cursor") String cursorString, @Nullable @Named("limit") Integer limit) {
+    @ApiMethod(name = "listStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CLIENT_ID })
+    public CollectionResponse<Store> listStore(@Nullable @Named("cursor") String cursorString, @Nullable @Named("limit") Integer limit, User user)
+	    throws UnauthorizedException {
+	if (user == null) {
+	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
+	}
 
 	PersistenceManager mgr = null;
 	Cursor cursor = null;
@@ -70,13 +76,18 @@ public class StoreEndpoint {
      * @param id
      *            the primary key of the java bean.
      * @return The entity with primary key id.
+     * @throws UnauthorizedException
      */
-    @ApiMethod(name = "getStore")
-    public Store getStore(@Named("id") Long id) {
+    @ApiMethod(name = "getStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CLIENT_ID })
+    public Store getStore(@Named("_id") Long _id, User user) throws UnauthorizedException {
+	if (user == null) {
+	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
+	}
+
 	PersistenceManager mgr = getPersistenceManager();
 	Store store = null;
 	try {
-	    store = mgr.getObjectById(Store.class, id);
+	    store = mgr.getObjectById(Store.class, _id);
 	} finally {
 	    mgr.close();
 	}
@@ -96,12 +107,15 @@ public class StoreEndpoint {
     public Store insertStore(Store store, User user) throws UnauthorizedException {
 	if (user == null) {
 	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
-	} else if (store == null || store.getData() == null || store.getId() != null) {
+	} else if (store == null || store.getData() == null || store.get_id() != null) {
 	    return null;
 	}
 
 	PersistenceManager mgr = getPersistenceManager();
 	try {
+	    Date currentDate = new Date();
+	    store.set_createdAt(currentDate);
+	    store.set_upatedAt(currentDate);
 	    mgr.makePersistent(store);
 	} finally {
 	    mgr.close();
@@ -116,14 +130,21 @@ public class StoreEndpoint {
      * @param store
      *            the entity to be updated.
      * @return The updated entity.
+     * @throws UnauthorizedException
      */
-    @ApiMethod(name = "updateStore")
-    public Store updateStore(Store store) {
+    @ApiMethod(name = "updateStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CLIENT_ID })
+    public Store updateStore(Store store, User user) throws UnauthorizedException {
+	if (user == null) {
+	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
+	}
+
 	PersistenceManager mgr = getPersistenceManager();
 	try {
 	    if (!containsStore(store)) {
 		throw new EntityNotFoundException("Object does not exist");
 	    }
+	    Date currentDate = new Date();
+	    store.set_upatedAt(currentDate);
 	    mgr.makePersistent(store);
 	} finally {
 	    mgr.close();
@@ -136,12 +157,17 @@ public class StoreEndpoint {
      * 
      * @param id
      *            the primary key of the entity to be deleted.
+     * @throws UnauthorizedException
      */
-    @ApiMethod(name = "removeStore")
-    public void removeStore(@Named("id") Long id) {
+    @ApiMethod(name = "removeStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CLIENT_ID })
+    public void removeStore(@Named("_id") Long _id, User user) throws UnauthorizedException {
+	if (user == null) {
+	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
+	}
+
 	PersistenceManager mgr = getPersistenceManager();
 	try {
-	    Store store = mgr.getObjectById(Store.class, id);
+	    Store store = mgr.getObjectById(Store.class, _id);
 	    mgr.deletePersistent(store);
 	} finally {
 	    mgr.close();
@@ -152,7 +178,7 @@ public class StoreEndpoint {
 	PersistenceManager mgr = getPersistenceManager();
 	boolean contains = true;
 	try {
-	    mgr.getObjectById(Store.class, store.getId());
+	    mgr.getObjectById(Store.class, store.get_id());
 	} catch (javax.jdo.JDOObjectNotFoundException ex) {
 	    contains = false;
 	} finally {

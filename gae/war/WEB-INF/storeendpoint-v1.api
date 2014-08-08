@@ -28,7 +28,7 @@
   "packagePath" : "sync.entity",
   "methods" : {
     "storeendpoint.removeStore" : {
-      "path" : "store/{id}",
+      "path" : "store/{_id}",
       "httpMethod" : "DELETE",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
@@ -37,7 +37,7 @@
       "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.removeStore",
       "request" : {
         "parameters" : {
-          "id" : {
+          "_id" : {
             "type" : "int64",
             "required" : true
           }
@@ -46,22 +46,6 @@
       },
       "response" : {
         "body" : "empty"
-      }
-    },
-    "storeendpoint.updateStore" : {
-      "path" : "store",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.updateStore",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
       }
     },
     "storeendpoint.listStore" : {
@@ -89,8 +73,24 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "storeendpoint.updateStore" : {
+      "path" : "store",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.updateStore",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
     "storeendpoint.getStore" : {
-      "path" : "store/{id}",
+      "path" : "store/{_id}",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
@@ -99,7 +99,7 @@
       "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.getStore",
       "request" : {
         "parameters" : {
-          "id" : {
+          "_id" : {
             "type" : "int64",
             "required" : true
           }
@@ -129,19 +129,6 @@
   },
   "descriptor" : {
     "schemas" : {
-      "Store" : {
-        "id" : "Store",
-        "type" : "object",
-        "properties" : {
-          "id" : {
-            "type" : "string",
-            "format" : "int64"
-          },
-          "data" : {
-            "type" : "string"
-          }
-        }
-      },
       "CollectionResponse_Store" : {
         "id" : "CollectionResponse_Store",
         "type" : "object",
@@ -156,10 +143,39 @@
             "type" : "string"
           }
         }
+      },
+      "Store" : {
+        "id" : "Store",
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "_name" : {
+            "type" : "string"
+          },
+          "_createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "_upatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "data" : {
+            "type" : "string"
+          }
+        }
       }
     },
     "methods" : {
       "com.bootsimply.sync.entity.StoreEndpoint.removeStore" : {
+      },
+      "com.bootsimply.sync.entity.StoreEndpoint.listStore" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Store"
+        }
       },
       "com.bootsimply.sync.entity.StoreEndpoint.updateStore" : {
         "request" : {
@@ -167,11 +183,6 @@
         },
         "response" : {
           "$ref" : "Store"
-        }
-      },
-      "com.bootsimply.sync.entity.StoreEndpoint.listStore" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Store"
         }
       },
       "com.bootsimply.sync.entity.StoreEndpoint.getStore" : {
