@@ -33,7 +33,7 @@
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com" ],
       "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.removeStore",
       "request" : {
         "parameters" : {
@@ -54,7 +54,7 @@
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com" ],
       "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.listStore",
       "request" : {
         "parameters" : {
@@ -79,7 +79,7 @@
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com" ],
       "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.updateStore",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
@@ -95,7 +95,7 @@
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com" ],
       "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.getStore",
       "request" : {
         "parameters" : {
@@ -116,7 +116,7 @@
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com" ],
       "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.insertStore",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
