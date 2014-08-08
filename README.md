@@ -2,9 +2,7 @@ chrome-gae-sync
 ==========
 
 I realized that a lot of Chrome developers, including me, struggle to store their app data online and there is no quick and easy way to solve this problem. The open source project 'chrome-gae-sync' is a result of that.
-
 ![alt text](https://raw.githubusercontent.com/AnujaK/chrome-gae-sync/master/extras/Chrome-GAE-Sync_img.png "Initial Design")
-
 ##### What?
 
 Supercharge your Chrome applications with a ready-to-use powerful Google App Engine backend. 
