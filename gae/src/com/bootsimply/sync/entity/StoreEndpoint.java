@@ -78,7 +78,7 @@ public class StoreEndpoint {
      * @return The entity with primary key id.
      * @throws UnauthorizedException
      */
-    @ApiMethod(name = "getStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID })
+    @ApiMethod(name = "getStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID, Config.API_EXPLORER_CLIENT_ID })
     public Store getStore(@Named("_id") Long _id, User user) throws UnauthorizedException {
 	if (user == null) {
 	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
@@ -103,7 +103,7 @@ public class StoreEndpoint {
      * @return The inserted entity.
      * @throws UnauthorizedException
      */
-    @ApiMethod(name = "insertStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID })
+    @ApiMethod(name = "insertStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID, Config.API_EXPLORER_CLIENT_ID })
     public Store insertStore(Store store, User user) throws UnauthorizedException {
 	if (user == null) {
 	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
@@ -132,7 +132,7 @@ public class StoreEndpoint {
      * @return The updated entity.
      * @throws UnauthorizedException
      */
-    @ApiMethod(name = "updateStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID })
+    @ApiMethod(name = "updateStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID, Config.API_EXPLORER_CLIENT_ID })
     public Store updateStore(Store store, User user) throws UnauthorizedException {
 	if (user == null) {
 	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
@@ -159,7 +159,7 @@ public class StoreEndpoint {
      *            the primary key of the entity to be deleted.
      * @throws UnauthorizedException
      */
-    @ApiMethod(name = "removeStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID })
+    @ApiMethod(name = "removeStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID, Config.API_EXPLORER_CLIENT_ID })
     public void removeStore(@Named("_id") Long _id, User user) throws UnauthorizedException {
 	if (user == null) {
 	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
