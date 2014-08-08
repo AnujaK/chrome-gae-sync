@@ -10,7 +10,7 @@ Supercharge your Chrome applications with a ready-to-use powerful Google App Eng
 
 ##### Why?
 
-We happen to spend so much time in coding and testing CRUD operations. Will it not be great if we get something to plug in and be able to access the Chrome app from where we had left it last time? 
+We happen to spend so much time in coding and testing data storage and fetching operations. Will it not be great if we get something to plug in and be able to access the Chrome app in the same state from anywhere as that of where we had left it?
 
 You can be more productive in building the functionality of the app by using this project in your app.
 
