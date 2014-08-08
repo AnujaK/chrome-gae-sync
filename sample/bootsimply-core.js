@@ -35,12 +35,13 @@ var BootSimply = (function () {
 				type: type,
 				dataType: 'json',
 				data: data,
+                
 				contentType: "application/json",
 				headers: {
 					'Authorization': 'Bearer ' + accessToken
 				},
 				success: function (response) {
-					console.log("response : " + response);
+					console.log("response : " + JSON.stringify(response));
 					if (callback && callback != null) {
 						callback(response);
 					}
@@ -63,8 +64,10 @@ var BootSimply = (function () {
 	}
 
 	BootSimply.prototype.insertStore = function (data, callback) {
-		var apiUrl = APPSPOT_ENDPOINT + "/";
-		makeApiCall(apiUrl, 'post', data, callback);
+		var apiUrl = APPSPOT_ENDPOINT + "/";        
+        var requestObject = { "data": data};
+        console.log("Data in insertStore method: "+requestObject);
+		makeApiCall(apiUrl, 'post', JSON.stringify(requestObjects), callback);
 		return "";
 	}
 

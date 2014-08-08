@@ -2,9 +2,11 @@
 
 function start() {
 	var bootSimply = new BootSimply("Todo");
-	bootSimply.listStore();
+	var data="data from my chrome app";
 
-	//bootSimply.insertStore (pass parguments);
+	bootSimply.insertStore(data);
+    
+    bootSimply.listStore();
 }
 
 window.onload = start;
