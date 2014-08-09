@@ -1,8 +1,8 @@
 chrome-gae-sync
 ==========
 
-I realized that a lot of Chrome developers, including me, struggle to store their app data online and there is no quick and easy way to solve this problem. The open source project 'chrome-gae-sync' is a result of that.
-![alt text](https://raw.githubusercontent.com/AnujaK/chrome-gae-sync/master/extras/Chrome-GAE-Sync_img.png "Initial Design")
+I realized that a lot of Chrome developers, including me, struggle to store their app data online and there is no quick and easy way to solve this problem. The open source project **chrome-gae-sync** is a result of that.
+![alt text](https://raw.githubusercontent.com/AnujaK/chrome-gae-sync/master/extras/Chrome-GAE-Sync_img.png "Initial Architecture")
 ##### What?
 
 Supercharge your Chrome applications with a ready-to-use powerful Google App Engine backend. 
@@ -23,10 +23,10 @@ Getting Started
 
 ### 1. Google App Engine
 
-
-Go to https://appengine.google.com and create a new application (Enter application identifier, title and create it). I will use “chrome-gae-sync” as my application identifier in this documentation.
+Go to https://appengine.google.com and create a new application (Enter application identifier, title and create it). I will use **chrome-gae-sync** as my application identifier in this documentation.
 
 TODO : Add More details
+
 
 ### 2. Google Developers Console
 
@@ -62,7 +62,9 @@ Note : You can enter multiple URLs. **Authorized Redirect URI** will get updated
 
 Note : We can even revisit the project later and edit details.
 
-2.3. Consent Screen - Select **Email Address**, enter **Product Name** and click Save. You can also enter optional fields like home page url, logo etc.
+2.3. Consent Screen 
+
+Select **Email Address**, enter **Product Name** and click Save. You can also enter optional fields like home page url, logo etc.
 
 
 ### 3. Chrome Application
@@ -73,7 +75,7 @@ Note : We can even revisit the project later and edit details.
 "permissions": ["identity"],
 "oauth2": {
     "client_id": "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com",
-    "scopes": ["https://www.googleapis.com/auth/plus.login"]
+    "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
 }
 ```
 
