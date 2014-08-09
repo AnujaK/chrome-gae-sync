@@ -36,6 +36,10 @@ Go to https://console.developers.google.com and click on the GAE application ide
 2.1. In the left navigation bar, under "APIS & AUTH" section, click on APIs and enable Google+API. Once done you will see Google+API at the top with status ON (ON button is displayed in green).
 
 2.2. Generate Client ID for OAuth - TODO
+In Google Developers Console, click on "Create new Client ID" under "APIS & AUTH". A pop-up appears which contains options to select type of application for which client ID is to be generated. We will need client ID for web application and Chrome application. Click on "Web application" as APPLICATION TYPE and in the textbox labeled as AUTHORIZED JAVASCRIPT ORIGINS, enter URL of your application. In this case we entered http://chrome-gae-sync.appspot.com, which is the deployment URL and http://localhost:8888 for local testing. You can enter multiple URLs. AUTHORIZED REDIRECT URI will get updated accordingly. Click on "Create Client ID".
+We can even revisit the project later in the console and authorized origins.
+
+To generate client ID for Chrome application, again click on "Create new Client ID" and select "Installed application" as APPLICATION TYPE and INSTALLED APPLICATION TYPE as "Chrome Application". Click on "Create Client ID".
 
 2.3. Consent Screen - Select Email address, enter product name and click Save. You can also enter optional fields like home page url, logo etc.
 

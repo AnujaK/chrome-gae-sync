@@ -1,0 +1,17 @@
+{
+  "name": "todo-app",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "minimum_chrome_version": "29",
+  "app": {
+        "background": {
+            "scripts": ["main.js"]
+        }
+    },
+"key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl2D44PxUrPtkw6QZeceaCan4RZaFMmOdEI7EOrW7vGHg9eIl0850I8d+/MFnOlwTEPQV7uVtqYn7bhQsXYzkeSMPaw/wc/hKQFwzA5P1aM07/asW9fJMmiNYYfGGqfXx1XuDHIrD+dwnfNX4KIZhzyKDFXoMAS/UEi8SEgKTNArcqbvgB4gq1tamYwWvKqmU5isJeM+kOL9LTdIEcYRZZ74RBI7ZbWcmzIhKnf3bbRpZLLQzQP08B25qPyiOIr6/HsO8UP3nNoWjhw6TfJh65wiA/Llit2bY9t6XiwuBPxgPDOwAWRUAy23cV1JJwxPgXtjWIy199FfizFRV6fNP5QIDAQAB",
+    "permissions": ["identity", "https://accounts.google.com/*", "https://www.googleapis.com/*"],
+    "oauth2": {
+        "client_id": "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com",
+        "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
+    }
+}
