@@ -21,30 +21,51 @@ Just do some simple configurations and plug this project into yours. Using OAuth
 Getting Started
 ==========
 
-##### 1. Google App Engine
+### 1. Google App Engine
 
 
 Go to https://appengine.google.com and create a new application (Enter application identifier, title and create it). I will use “chrome-gae-sync” as my application identifier in this documentation.
 
 TODO : Add More details
 
-##### 2. Google Developers Console
-
+### 2. Google Developers Console
 
 Go to https://console.developers.google.com and click on the GAE application identifier you created above. 
 
-2.1. In the left navigation bar, under "APIS & AUTH" section, click on APIs and enable Google+API. Once done you will see Google+API at the top with status ON (ON button is displayed in green).
+2.1. Enable Google+ API
 
-2.2. Generate Client ID for OAuth
-In Google Developers Console, click on "Create new Client ID" under "APIS & AUTH". A pop-up appears which contains options to select type of application for which client ID is to be generated. We will need client ID for web application and Chrome application. Click on "Web application" as APPLICATION TYPE and in the textbox labeled as AUTHORIZED JAVASCRIPT ORIGINS, enter URL of your application. In this case we entered http://chrome-gae-sync.appspot.com, which is the deployment URL and http://localhost:8888 for local testing. You can enter multiple URLs. AUTHORIZED REDIRECT URI will get updated accordingly. Click on "Create Client ID".
-We can even revisit the project later in the console and authorized origins.
+Go to **APIs & AUTH > APIs** and enable **Google+ API**. Once done you will see Google+ API at the top with status ON (ON button is displayed in green).
 
-To generate client ID for Chrome application, again click on "Create new Client ID" and select "Installed application" as APPLICATION TYPE and INSTALLED APPLICATION TYPE as "Chrome Application". Click on "Create Client ID".
+2.2. Generate Client IDs
 
-2.3. Consent Screen - Select Email address, enter product name and click Save. You can also enter optional fields like home page url, logo etc.
+Go to **APIs & AUTH > Credentials**. Here you will need to create two Client IDs.
+
+2.2.1 Client ID for Web application
+
+- Click on **Create new Client ID**.
+- Select **Web application** as *Application Type*.
+- In the textbox labeled as **Authorized Javascript Origins**, enter appspot URL of your application. 
+
+Note : In this case we entered http://chrome-gae-sync.appspot.com, which is the deployment URL and http://localhost:8888 for local testing. 
+
+- Click on **Create Client ID**.
+
+Note : You can enter multiple URLs. **Authorized Redirect URI** will get updated accordingly. 
+
+2.2.2 Client ID for Chrome application
+
+- Again click on **Create new Client ID**.
+- Select **Installed application** as *Application Type*.
+- Under *Installed Application Type* select **Chrome Application**. 
+- Enter **Application ID** for your Chrome Application.
+- Click on **Create Client ID**.
+
+Note : We can even revisit the project later and edit details.
+
+2.3. Consent Screen - Select **Email Address**, enter **Product Name** and click Save. You can also enter optional fields like home page url, logo etc.
 
 
-##### 3. Chrome Application
+### 3. Chrome Application
 
 3.1. Add/update the following in your manifest.json file:
 
