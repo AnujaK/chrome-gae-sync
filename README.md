@@ -91,10 +91,23 @@ Deployment
 
 TODO
 
-Technology Stack
+Technology
 ==========
 
-TODO
+### Quick Links
+
+- Google App Engine : appengine.google.com
+- Google Developers Console : https://console.developers.google.com
+- Chrome Developer Dashboard : https://chrome.google.com/webstore/developer/dashboard
+- Chrome GAE Sync : https://github.com/AnujaK/chrome-gae-sync
+
+### Tutorials
+
+- Google Cloud Endpoints : https://developers.google.com/appengine/docs/java/endpoints/
+- OAuth2 in Chrome : https://developer.chrome.com/apps/app_identity
+- BootSimply Blog : http://bootsimply.blogspot.in/2014/08/open-source-project.html
+
+
 
 Contribute
 ==========
