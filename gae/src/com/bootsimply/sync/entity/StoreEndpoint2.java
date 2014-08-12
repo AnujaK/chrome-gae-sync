@@ -1,13 +1,11 @@
 package com.bootsimply.sync.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Nullable;
 import javax.inject.Named;
-import javax.jdo.PersistenceManager;
-import javax.jdo.Query;
 import javax.persistence.EntityNotFoundException;
 
 import com.google.api.server.spi.config.Api;
@@ -19,62 +17,80 @@ import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.QueryResultList;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.users.User;
-import com.google.appengine.datanucleus.query.JDOCursorHelper;
 
 @Api(name = "storeendpoint2", namespace = @ApiNamespace(ownerDomain = "bootsimply.com", ownerName = "bootsimply.com", packagePath = "sync.entity"))
 public class StoreEndpoint2 {
+	
+	private static String _id = "_id";
+	private static String _createdAt = "_createdAt";
+	private static String _createdBy = "_createdBy";
+	private static String _updatedAt = "_updatedAt";
+	private static String _updatedBy = "_updatedBy";
+	private static String _status = "_status";
+	private static String data = "data";
 
+	private static String ACTIVE = "ACTIVE";
+	private static String ARCHIVED = "ARCHIVED";
+	private static String DELETED = "DELETED";
     /**
      * This method lists all the entities inserted in datastore. It uses HTTP GET method and paging support.
      * 
      * @return A CollectionResponse class containing the list of all entities persisted and a cursor to the next page.
      * @throws UnauthorizedException
      */
-    @SuppressWarnings({ "unchecked", "unused" })
     @ApiMethod(name = "listStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID,
 	    Config.API_EXPLORER_CLIENT_ID })
-    public CollectionResponse<Store> listStore(@Named("_name") String _name, @Nullable @Named("cursor") String cursorString,
+    public CollectionResponse<ServiceResponse> listStore(@Named("_name") String _name, @Nullable @Named("cursor") String cursorString,
 	    @Nullable @Named("limit") Integer limit, User user) throws UnauthorizedException {
-	if (user == null) {
-	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
-	}
+		if (user == null) {
+			throw new UnauthorizedException(
+					"UnauthorizedException # User is Null.");
+		}
+		DatastoreService datastore = DatastoreServiceFactory
+				.getDatastoreService();
+		if (limit == null) {
+			limit = 10;
+		}
+		FetchOptions fetchOptions = FetchOptions.Builder.withLimit(limit);
+		if (cursorString != null) {
+			fetchOptions.startCursor(Cursor.fromWebSafeString(cursorString));
+		}
+		Query q = new Query(_name);
+		PreparedQuery pq = datastore.prepare(q);
+		QueryResultList<Entity> results = pq.asQueryResultList(fetchOptions);
+		
+		List<ServiceResponse> responses = new ArrayList<ServiceResponse>();
+		ServiceResponse res = null;
+		for (Entity entity : results) {
+			res = new ServiceResponse();
+			//TODO add properties from entity to service response
+			res.set_id(entity.getKey().getId());
+    	    
+    	    res.set_createdAt((Date) entity.getProperty(_createdAt));
+    	    res.set_createdBy((String) entity.getProperty(_createdBy));
+    	    
+    	    res.set_upatedAt((Date) entity.getProperty(_updatedAt));
+    	    res.set_updatedBy((String) entity.getProperty(_updatedBy));
+    	    
+    	    res.set_status((String) entity.getProperty(_status));
+    	    
+    	    Text dataText = (Text)entity.getProperty(data);
+			res.setData(dataText.getValue());
+			
+			responses.add(res);
+		}
+		
+		//cursorString = results.getCursor().toWebSafeString();
 
-	PersistenceManager mgr = null;
-	Cursor cursor = null;
-	List<Store> execute = null;
-
-	try {
-	    mgr = getPersistenceManager();
-	    Query query = mgr.newQuery(Store.class);
-	    if (cursorString != null && cursorString != "") {
-		cursor = Cursor.fromWebSafeString(cursorString);
-		HashMap<String, Object> extensionMap = new HashMap<String, Object>();
-		extensionMap.put(JDOCursorHelper.CURSOR_EXTENSION, cursor);
-		query.setExtensions(extensionMap);
-	    }
-
-	    if (limit != null) {
-		query.setRange(0, limit);
-	    }
-
-	    execute = (List<Store>) query.execute();
-	    cursor = JDOCursorHelper.getCursor(execute);
-	    if (cursor != null)
-		cursorString = cursor.toWebSafeString();
-
-	    // Tight loop for fetching all entities from datastore and accomodate
-	    // for lazy fetch.
-	    for (Store obj : execute)
-		;
-	} finally {
-	    mgr.close();
-	}
-
-	return CollectionResponse.<Store> builder().setItems(execute).setNextPageToken(cursorString).build();
+		return CollectionResponse.<ServiceResponse> builder().setItems(responses).setNextPageToken(cursorString).build();
     }
 
     /**
@@ -99,15 +115,15 @@ public class StoreEndpoint2 {
     	    Entity entity = dsService.get(key);
     	    res.set_id(entity.getKey().getId());
     	    
-    	    res.set_createdAt((Date) entity.getProperty("_createdAt"));
-    	    res.set_createdBy((String) entity.getProperty("_createdBy"));
+    	    res.set_createdAt((Date) entity.getProperty(_createdAt));
+    	    res.set_createdBy((String) entity.getProperty(_createdBy));
     	    
-    	    res.set_upatedAt((Date) entity.getProperty("_updatedAt"));
-    	    res.set_updatedBy((String) entity.getProperty("_updatedBy"));
+    	    res.set_upatedAt((Date) entity.getProperty(_updatedAt));
+    	    res.set_updatedBy((String) entity.getProperty(_updatedBy));
     	    
-    	    res.set_status((String) entity.getProperty("_status"));
+    	    res.set_status((String) entity.getProperty(_status));
     	    
-    	    Text dataText = (Text)entity.getProperty("data");
+    	    Text dataText = (Text)entity.getProperty(data);
 			res.setData(dataText.getValue());
     	    
     	} catch (com.google.appengine.api.datastore.EntityNotFoundException e) {
@@ -141,14 +157,14 @@ public class StoreEndpoint2 {
 	DatastoreService dsService = DatastoreServiceFactory.getDatastoreService();
 	Entity entity = new Entity(_name);
 
-	entity.setProperty("_createdAt", currentDate);
-	entity.setProperty("_createdBy", userEmail);
+	entity.setProperty(_createdAt, currentDate);
+	entity.setProperty(_createdBy, userEmail);
 
-	entity.setProperty("_upatedAt", currentDate);
-	entity.setProperty("_updatedBy", userEmail);
+	entity.setProperty(_updatedAt, currentDate);
+	entity.setProperty(_updatedBy, userEmail);
 
-	entity.setProperty("_status", "ACTIVE");
-	entity.setUnindexedProperty("data", new Text(req.getData()));
+	entity.setProperty(_status, ACTIVE);
+	entity.setUnindexedProperty(data, new Text(req.getData()));
 
 	dsService.put(entity);
 
@@ -183,10 +199,10 @@ public class StoreEndpoint2 {
 	try {
 	    Entity entity = dsService.get(key);
 
-	    entity.setProperty("_upatedAt", currentDate);
-	    entity.setProperty("_updatedBy", userEmail);
+	    entity.setProperty(_updatedAt, currentDate);
+	    entity.setProperty(_updatedBy, userEmail);
 
-	    entity.setUnindexedProperty("data", new Text(req.getData()));
+	    entity.setUnindexedProperty(data, new Text(req.getData()));
 
 	    dsService.put(entity);
 	    
@@ -198,44 +214,68 @@ public class StoreEndpoint2 {
 	return res;
     }
 
-    /**
-     * This method removes the entity with primary key id. It uses HTTP DELETE method.
-     * 
-     * @param id
-     *            the primary key of the entity to be deleted.
-     * @throws UnauthorizedException
-     */
-    @ApiMethod(name = "removeStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID,
-	    Config.API_EXPLORER_CLIENT_ID })
-    public void removeStore(@Named("_name") String _name, @Named("_id") Long _id, User user) throws UnauthorizedException {
-	if (user == null) {
-	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
-	}
+    @ApiMethod(name = "archive", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID,
+    	    Config.API_EXPLORER_CLIENT_ID })
+        public ServiceResponse archive(@Named("_name") String _name, @Named("_id") Long _id, User user)
+    	    throws UnauthorizedException {
+    	ServiceResponse res = updateStatus(_name, _id, ARCHIVED, user);
+    	
+    	return res;
+        }
+        
+        @ApiMethod(name = "softDelete", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID,
+    	    Config.API_EXPLORER_CLIENT_ID })
+        public ServiceResponse softDelete(@Named("_name") String _name, @Named("_id") Long _id, User user)
+    	    throws UnauthorizedException {
+    	ServiceResponse res = updateStatus(_name, _id, DELETED, user);
+    	
+    	return res;
+        }
+        
+        private ServiceResponse updateStatus(String _name, Long _id, String _status, User user) throws UnauthorizedException {
+    	if (user == null) {
+    	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
+    	}
+    	Key key = KeyFactory.createKey(_name, _id);
+    	Date currentDate = new Date();
+    	String userEmail = user.getEmail();
 
-	PersistenceManager mgr = getPersistenceManager();
-	try {
-	    Store store = mgr.getObjectById(Store.class, _id);
-	    mgr.deletePersistent(store);
-	} finally {
-	    mgr.close();
-	}
-    }
+    	DatastoreService dsService = DatastoreServiceFactory.getDatastoreService();
+    	ServiceResponse res = new ServiceResponse();
+    	try {
+    	    Entity entity = dsService.get(key);
 
-    private boolean containsStore(Store store) {
-	PersistenceManager mgr = getPersistenceManager();
-	boolean contains = true;
-	try {
-	    mgr.getObjectById(Store.class, store.get_id());
-	} catch (javax.jdo.JDOObjectNotFoundException ex) {
-	    contains = false;
-	} finally {
-	    mgr.close();
-	}
-	return contains;
-    }
+    	    entity.setProperty(_updatedAt, currentDate);
+    	    entity.setProperty(_updatedBy, userEmail);
 
-    private static PersistenceManager getPersistenceManager() {
-	return PMF.get().getPersistenceManager();
-    }
+    	    entity.setProperty(StoreEndpoint2._status, _status);
+
+    	    dsService.put(entity);
+    	    
+    	    res.set_id(entity.getKey().getId());
+    	    
+    	} catch (com.google.appengine.api.datastore.EntityNotFoundException e) {
+    	    throw new EntityNotFoundException("Object does not exist");
+    	}
+    	return res;
+        }
+
+        /**
+         * This method removes the entity with primary key id. It uses HTTP DELETE method.
+         * 
+         * @param id
+         *            the primary key of the entity to be deleted.
+         * @throws UnauthorizedException
+         */
+        @ApiMethod(name = "removeStore", scopes = { Config.EMAIL_SCOPE }, clientIds = { Config.CHROME_CLIENT_ID, Config.WEB_CLIENT_ID,
+    	    Config.API_EXPLORER_CLIENT_ID })
+        public void removeStore(@Named("_name") String _name, @Named("_id") Long _id, User user) throws UnauthorizedException {
+    	if (user == null) {
+    	    throw new UnauthorizedException("UnauthorizedException # User is Null.");
+    	}
+    	Key key = KeyFactory.createKey(_name, _id);
+    	DatastoreService dsService = DatastoreServiceFactory.getDatastoreService();
+    	dsService.delete(key);
+        }
 
 }

@@ -48,22 +48,6 @@
         "body" : "empty"
       }
     },
-    "storeendpoint.updateStore" : {
-      "path" : "store",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.updateStore",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "storeendpoint.listStore" : {
       "path" : "store",
       "httpMethod" : "GET",
@@ -84,6 +68,22 @@
           }
         },
         "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "storeendpoint.updateStore" : {
+      "path" : "store",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint.updateStore",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -129,6 +129,21 @@
   },
   "descriptor" : {
     "schemas" : {
+      "CollectionResponse_Store" : {
+        "id" : "CollectionResponse_Store",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Store"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
       "Store" : {
         "id" : "Store",
         "type" : "object",
@@ -152,25 +167,15 @@
             "type" : "string"
           }
         }
-      },
-      "CollectionResponse_Store" : {
-        "id" : "CollectionResponse_Store",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "Store"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
       "com.bootsimply.sync.entity.StoreEndpoint.removeStore" : {
+      },
+      "com.bootsimply.sync.entity.StoreEndpoint.listStore" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Store"
+        }
       },
       "com.bootsimply.sync.entity.StoreEndpoint.updateStore" : {
         "request" : {
@@ -178,11 +183,6 @@
         },
         "response" : {
           "$ref" : "Store"
-        }
-      },
-      "com.bootsimply.sync.entity.StoreEndpoint.listStore" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Store"
         }
       },
       "com.bootsimply.sync.entity.StoreEndpoint.getStore" : {
