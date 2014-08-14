@@ -15,7 +15,7 @@
   <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
   <init-param>
    <param-name>services</param-name>
-   <param-value>com.bootsimply.sync.entity.StoreEndpoint,com.bootsimply.sync.entity.StoreEndpoint2,com.bootsimply.sync.service.CloudSyncService</param-value>
+   <param-value>com.bootsimply.sync.entity.DataEndpoint,com.bootsimply.sync.entity.RelationEndpoint,com.bootsimply.sync.entity.StoreEndpoint,com.bootsimply.sync.service.CloudSyncService</param-value>
   </init-param>
  </servlet>
  <servlet-mapping>

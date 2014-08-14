@@ -1,5 +1,15 @@
 package com.bootsimply.sync.entity;
 
+import static com.bootsimply.sync.entity.Constants.ACTIVE;
+import static com.bootsimply.sync.entity.Constants.ARCHIVED;
+import static com.bootsimply.sync.entity.Constants.DELETED;
+import static com.bootsimply.sync.entity.Constants._createdAt;
+import static com.bootsimply.sync.entity.Constants._createdBy;
+import static com.bootsimply.sync.entity.Constants._status;
+import static com.bootsimply.sync.entity.Constants._updatedAt;
+import static com.bootsimply.sync.entity.Constants._updatedBy;
+import static com.bootsimply.sync.entity.Constants.data;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,21 +35,8 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.QueryResultList;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.users.User;
-
-@Api(name = "storeendpoint2", namespace = @ApiNamespace(ownerDomain = "bootsimply.com", ownerName = "bootsimply.com", packagePath = "sync.entity"))
-public class StoreEndpoint2 {
-	
-	private static String _id = "_id";
-	private static String _createdAt = "_createdAt";
-	private static String _createdBy = "_createdBy";
-	private static String _updatedAt = "_updatedAt";
-	private static String _updatedBy = "_updatedBy";
-	private static String _status = "_status";
-	private static String data = "data";
-
-	private static String ACTIVE = "ACTIVE";
-	private static String ARCHIVED = "ARCHIVED";
-	private static String DELETED = "DELETED";
+@Api(name = "dataendpoint", namespace = @ApiNamespace(ownerDomain = "bootsimply.com", ownerName = "bootsimply.com", packagePath = "sync.entity"))
+public class DataEndpoint {
     /**
      * This method lists all the entities inserted in datastore. It uses HTTP GET method and paging support.
      * 
@@ -248,7 +245,7 @@ public class StoreEndpoint2 {
     	    entity.setProperty(_updatedAt, currentDate);
     	    entity.setProperty(_updatedBy, userEmail);
 
-    	    entity.setProperty(StoreEndpoint2._status, _status);
+    	    entity.setProperty(_status, _status);
 
     	    dsService.put(entity);
     	    
@@ -277,5 +274,7 @@ public class StoreEndpoint2 {
     	DatastoreService dsService = DatastoreServiceFactory.getDatastoreService();
     	dsService.delete(key);
         }
+        
+
 
 }

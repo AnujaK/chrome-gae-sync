@@ -2,7 +2,7 @@
   "extends" : "thirdParty.api",
   "abstract" : false,
   "root" : "https://chrome-gae-sync.appspot.com/_ah/api",
-  "name" : "storeendpoint2",
+  "name" : "dataendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "adapter" : {
@@ -27,14 +27,14 @@
   "ownerName" : "bootsimply.com",
   "packagePath" : "sync.entity",
   "methods" : {
-    "storeendpoint2.listStore" : {
+    "dataendpoint.listStore" : {
       "path" : "serviceresponse/{_name}",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint2.listStore",
+      "rosyMethod" : "com.bootsimply.sync.entity.DataEndpoint.listStore",
       "request" : {
         "parameters" : {
           "_name" : {
@@ -56,40 +56,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "storeendpoint2.updateStore" : {
-      "path" : "serviceresponse/{_name}/{_id}",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint2.updateStore",
-      "request" : {
-        "parameters" : {
-          "_name" : {
-            "type" : "string",
-            "required" : true
-          },
-          "_id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "storeendpoint2.getStore" : {
+    "dataendpoint.getStore" : {
       "path" : "serviceresponse/{_name}/{_id}",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint2.getStore",
+      "rosyMethod" : "com.bootsimply.sync.entity.DataEndpoint.getStore",
       "request" : {
         "parameters" : {
           "_name" : {
@@ -107,39 +81,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "storeendpoint2.removeStore" : {
-      "path" : "store/{_name}/{_id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint2.removeStore",
-      "request" : {
-        "parameters" : {
-          "_name" : {
-            "type" : "string",
-            "required" : true
-          },
-          "_id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
-    "storeendpoint2.insertStore" : {
+    "dataendpoint.insertStore" : {
       "path" : "serviceresponse/{_name}",
       "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint2.insertStore",
+      "rosyMethod" : "com.bootsimply.sync.entity.DataEndpoint.insertStore",
       "request" : {
         "parameters" : {
           "_name" : {
@@ -154,14 +103,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "storeendpoint2.archive" : {
-      "path" : "archive/{_name}/{_id}",
+    "dataendpoint.softDelete" : {
+      "path" : "softDelete/{_name}/{_id}",
       "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint2.archive",
+      "rosyMethod" : "com.bootsimply.sync.entity.DataEndpoint.softDelete",
       "request" : {
         "parameters" : {
           "_name" : {
@@ -179,14 +128,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "storeendpoint2.softDelete" : {
-      "path" : "softDelete/{_name}/{_id}",
-      "httpMethod" : "POST",
+    "dataendpoint.removeStore" : {
+      "path" : "store/{_name}/{_id}",
+      "httpMethod" : "DELETE",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "com.bootsimply.sync.entity.StoreEndpoint2.softDelete",
+      "rosyMethod" : "com.bootsimply.sync.entity.DataEndpoint.removeStore",
       "request" : {
         "parameters" : {
           "_name" : {
@@ -199,6 +148,57 @@
           }
         },
         "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "dataendpoint.archive" : {
+      "path" : "archive/{_name}/{_id}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.bootsimply.sync.entity.DataEndpoint.archive",
+      "request" : {
+        "parameters" : {
+          "_name" : {
+            "type" : "string",
+            "required" : true
+          },
+          "_id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "dataendpoint.updateStore" : {
+      "path" : "serviceresponse/{_name}/{_id}",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.bootsimply.sync.entity.DataEndpoint.updateStore",
+      "request" : {
+        "parameters" : {
+          "_name" : {
+            "type" : "string",
+            "required" : true
+          },
+          "_id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -263,12 +263,17 @@
       }
     },
     "methods" : {
-      "com.bootsimply.sync.entity.StoreEndpoint2.listStore" : {
+      "com.bootsimply.sync.entity.DataEndpoint.listStore" : {
         "response" : {
           "$ref" : "CollectionResponse_ServiceResponse"
         }
       },
-      "com.bootsimply.sync.entity.StoreEndpoint2.updateStore" : {
+      "com.bootsimply.sync.entity.DataEndpoint.getStore" : {
+        "response" : {
+          "$ref" : "ServiceResponse"
+        }
+      },
+      "com.bootsimply.sync.entity.DataEndpoint.insertStore" : {
         "request" : {
           "$ref" : "ServiceRequest"
         },
@@ -276,27 +281,22 @@
           "$ref" : "ServiceResponse"
         }
       },
-      "com.bootsimply.sync.entity.StoreEndpoint2.getStore" : {
+      "com.bootsimply.sync.entity.DataEndpoint.softDelete" : {
         "response" : {
           "$ref" : "ServiceResponse"
         }
       },
-      "com.bootsimply.sync.entity.StoreEndpoint2.removeStore" : {
+      "com.bootsimply.sync.entity.DataEndpoint.removeStore" : {
       },
-      "com.bootsimply.sync.entity.StoreEndpoint2.insertStore" : {
+      "com.bootsimply.sync.entity.DataEndpoint.archive" : {
+        "response" : {
+          "$ref" : "ServiceResponse"
+        }
+      },
+      "com.bootsimply.sync.entity.DataEndpoint.updateStore" : {
         "request" : {
           "$ref" : "ServiceRequest"
         },
-        "response" : {
-          "$ref" : "ServiceResponse"
-        }
-      },
-      "com.bootsimply.sync.entity.StoreEndpoint2.archive" : {
-        "response" : {
-          "$ref" : "ServiceResponse"
-        }
-      },
-      "com.bootsimply.sync.entity.StoreEndpoint2.softDelete" : {
         "response" : {
           "$ref" : "ServiceResponse"
         }

@@ -1,0 +1,135 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://chrome-gae-sync.appspot.com/_ah/api",
+  "name" : "relationendpoint",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://chrome-gae-sync.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "bootsimply.com",
+  "ownerName" : "bootsimply.com",
+  "packagePath" : "sync.entity",
+  "methods" : {
+    "relationendpoint.addRelation" : {
+      "path" : "addRelation/{_name}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "580486400136-3cthtr07f028k1f2cbfrt8ddbvhta0kv.apps.googleusercontent.com", "580486400136-esd2sg4o86mukn78jjmeds2n3kmgl7l7.apps.googleusercontent.com", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.bootsimply.sync.entity.RelationEndpoint.addRelation",
+      "request" : {
+        "parameters" : {
+          "_name" : {
+            "type" : "string",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "RelationRequest" : {
+        "id" : "RelationRequest",
+        "type" : "object",
+        "properties" : {
+          "from" : {
+            "$ref" : "RelationFrom"
+          },
+          "to" : {
+            "$ref" : "RelationTo"
+          }
+        }
+      },
+      "RelationFrom" : {
+        "id" : "RelationFrom",
+        "type" : "object",
+        "properties" : {
+          "_fromId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "_fromName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "RelationTo" : {
+        "id" : "RelationTo",
+        "type" : "object",
+        "properties" : {
+          "_toId" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "_toName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "ServiceResponse" : {
+        "id" : "ServiceResponse",
+        "type" : "object",
+        "properties" : {
+          "_id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "_createdAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "_createdBy" : {
+            "type" : "string"
+          },
+          "_upatedAt" : {
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "_updatedBy" : {
+            "type" : "string"
+          },
+          "_status" : {
+            "type" : "string"
+          },
+          "data" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.bootsimply.sync.entity.RelationEndpoint.addRelation" : {
+        "request" : {
+          "$ref" : "RelationRequest"
+        },
+        "response" : {
+          "$ref" : "ServiceResponse"
+        }
+      }
+    }
+  }
+}
