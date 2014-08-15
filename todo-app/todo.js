@@ -24,10 +24,12 @@ function successHandler(response){
     var listtodo = document.getElementById("listtodo");
     listtodo.innerHTML = "";
     
-    for(var i = 0; i < response.items.length; i++){
-        var divtest = document.createElement("div");
-        divtest.innerHTML = "<hr>" + response.items[i].data;
-        listtodo.appendChild(divtest);
+    if(response.items!=null || response.items!=undefined){
+        for(var i = 0; i < response.items.length; i++){
+            var divtest = document.createElement("div");
+            divtest.innerHTML = "<hr>" + response.items[i].data;
+            listtodo.appendChild(divtest);
+        }
     }
     var todotext = document.getElementById("todotext");
     todotext.value = "";

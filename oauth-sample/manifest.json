@@ -1,5 +1,5 @@
 {
-  "name": "oauth-sync",
+  "name": "oauth-sample",
   "version": "0.0.1",
     "manifest_version": 2,
     "minimum_chrome_version": "29",
