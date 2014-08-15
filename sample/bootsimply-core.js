@@ -52,33 +52,33 @@ var BootSimply = (function () {
 	}
 
 	BootSimply.prototype.listStore = function (cursor, limit, callback) {
-		var apiUrl = APPSPOT_ENDPOINT + "/";
+		var apiUrl = APPSPOT_ENDPOINT + "/" + this._name;
 		makeApiCall(apiUrl, 'get', null, callback);
 		return "";
 	}
 
 	BootSimply.prototype.getStore = function (_id, callback) {
-		var apiUrl = APPSPOT_ENDPOINT + "/" + _id;
+		var apiUrl = APPSPOT_ENDPOINT + "/" + this._name + "/" +_id;
 		makeApiCall(apiUrl, 'get', null, callback);
 		return "";
 	}
 
 	BootSimply.prototype.insertStore = function (data, callback) {
-		var apiUrl = APPSPOT_ENDPOINT + "/";        
+		var apiUrl = APPSPOT_ENDPOINT + "/" + this._name;        
         var requestObject = { "data": data};
         console.log("Data in insertStore method: "+requestObject);
-		makeApiCall(apiUrl, 'post', JSON.stringify(requestObjects), callback);
+		makeApiCall(apiUrl, 'post', JSON.stringify(requestObject), callback);
 		return "";
 	}
 
 	BootSimply.prototype.updateStore = function (_id, data, callback) {
-		var apiUrl = APPSPOT_ENDPOINT + "/" + _id;
+		var apiUrl = APPSPOT_ENDPOINT + "/" +this._name +"/"+ _id;
 		makeApiCall(apiUrl, 'put', data, callback);
 		return "";
 	}
 
 	BootSimply.prototype.removeStore = function (_id, callback) {
-		var apiUrl = APPSPOT_ENDPOINT + "/" + _id;
+		var apiUrl = APPSPOT_ENDPOINT + "/" +this._name +"/"+ _id;
 		makeApiCall(apiUrl, 'delete', null, callback);
 		return "";
 	}

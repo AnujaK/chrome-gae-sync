@@ -32,6 +32,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.QueryResultList;
 import com.google.appengine.api.datastore.Text;
 import com.google.appengine.api.users.User;
@@ -61,6 +62,7 @@ public class DataEndpoint {
 			fetchOptions.startCursor(Cursor.fromWebSafeString(cursorString));
 		}
 		Query q = new Query(_name);
+		q.addSort("_updatedAt", SortDirection.DESCENDING);
 		PreparedQuery pq = datastore.prepare(q);
 		QueryResultList<Entity> results = pq.asQueryResultList(fetchOptions);
 		
@@ -85,7 +87,7 @@ public class DataEndpoint {
 			responses.add(res);
 		}
 		
-		//cursorString = results.getCursor().toWebSafeString();
+		cursorString = results.getCursor().toWebSafeString();
 
 		return CollectionResponse.<ServiceResponse> builder().setItems(responses).setNextPageToken(cursorString).build();
     }
