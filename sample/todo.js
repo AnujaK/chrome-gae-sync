@@ -26,7 +26,7 @@ function successHandler(response){
     
     for(var i = 0; i < response.items.length; i++){
         var divtest = document.createElement("div");
-        divtest.innerHTML = response.items[i].data;
+        divtest.innerHTML = "<hr>" + response.items[i].data;
         listtodo.appendChild(divtest);
     }
     var todotext = document.getElementById("todotext");
