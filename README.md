@@ -139,6 +139,6 @@ Version 1.0 is coming soon.
 Copyright and License
 ==========
 
-Copyright 2014 AnujaK (a.for.anuja@gmail.com)
+Copyright 2014 Anuja Ranjan Kumar (a.for.anuja@gmail.com)
 
 Licensed under Apache License, Version 2.0
